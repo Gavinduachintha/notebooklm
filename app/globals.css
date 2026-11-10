@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-canvas: #151b19;
+  --color-sidebar: #111714;
+  --color-surface: #202925;
+  --color-elevated: #29332d;
+  --color-accent: #a3bda9;
+  --color-sage: #758f7d;
+  --color-ink: #e7eae3;
+  --color-muted: #9ba99f;
+  --color-line: #35413a;
+  --color-copper: #c18d6a;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-dm-serif), Georgia, "Times New Roman", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-sidebar);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+
+.note :where(p, ul) {
+  color: var(--color-ink);
+}
+
+.note :where(a) {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-sage);
+  text-underline-offset: 3px;
+}
+
+.note :where(a:hover) {
+  color: var(--color-ink);
+}
+
+.note :where(strong) {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.note :where(code) {
+  border-radius: 0.25rem;
+  background: var(--color-elevated);
+  padding: 0.1em 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-accent);
+}
+
+.note :where(pre) {
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+  background: var(--color-sidebar);
+  padding: 0.9rem 1rem;
+  line-height: 1.55;
+}
+
+.note :where(pre code) {
+  background: transparent;
+  padding: 0;
+  color: var(--color-ink);
+  font-size: 0.84rem;
+  line-height: 1.6;
 }
